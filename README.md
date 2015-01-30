@@ -1,2 +1,1 @@
-# Deneme
-asdadaf
+EMRE KUL
