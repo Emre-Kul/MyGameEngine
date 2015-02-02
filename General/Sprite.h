@@ -11,19 +11,18 @@ using namespace std;
 
 class FrameGroup{
 	vector <int> frameOrder;//{0,1,1,0}
-	int currentFrameIndex;//2
+	unsigned int currentFrameIndex;//2
 public:
 	
 	void setFrameOrder(int *indexes,int indSize);
 	void setFrameOrder(int index);
 	void next();
-	int getCurrentFrameIndex(){return frameOrder[currentFrameIndex];}
+	unsigned int getCurrentFrameIndex(){return frameOrder[currentFrameIndex];}
 };
 class Sprite{
-	int groupId,frameIndex;
+	unsigned int groupId,frameIndex;
 	vector <FrameGroup*> frameGroup;
 	vector <SHP2Rectangle*> frames;
-	
 	TextureResource *textureResource;
 	Mesh spritemesh;
 	

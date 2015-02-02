@@ -10,11 +10,13 @@ public:
 	 Screen();
 	 Screen(int witdh,int height);	
 	 
+	 void setScreen(int witdh,int height);
+
 	 float getRatio(){return ratio;}
 	 int getWidth(){return SCR_WIDTH;}
 	 int getHeight(){return SCR_HEIGHT;}
 
-private:
+
 
 };
 

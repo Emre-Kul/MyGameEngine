@@ -4,10 +4,6 @@ Player2D::Player2D(){
 	playerWall.WALLRIGHT = false;
 	playerWall.WALLLEFT = false;
 	playerWall.WALLBOTTOM = false;
-
-	look.change(1,0);
-	direction = 1;
-
 }
 void Player2D::setWallFalse(){
 	playerWall.WALLTOP = false;
@@ -17,14 +13,10 @@ void Player2D::setWallFalse(){
 }
 void Player2D::setPosition(SHP2Rectangle pos){
     position = pos;
-	Vector2 mid = (position.vecMax + position.vecMin)/2;
-	midPosition.change(mid.x,mid.y,0);
 }
 void Player2D::setPosition(float minx,float miny,float maxx,float maxy){
 	SHP2Rectangle pos(minx,miny,maxx,maxy);
 	position = pos;
-	Vector2 mid = (position.vecMax + position.vecMin)/2;
-	midPosition.change(mid.x,mid.y,0.0f);
 }
 void Player2D::move(KeyController &keyController,CollisionStack2D &map){
 	float maxac = 0.001f;
@@ -47,10 +39,11 @@ void Player2D::move(KeyController &keyController,CollisionStack2D &map){
 	if(acceleration.x > 0.0f)
 		if(velocity.x < velocityGoal.x) velocity.x += acceleration.x;
 		else velocity.x = velocityGoal.x;
+	
 	if(acceleration.x < 0.0f)
 		if(velocity.x > velocityGoal.x) velocity.x += acceleration.x;
 		else velocity.x = velocityGoal.x;
-    
+	
 	velocity.y += acceleration.y;
 	setWallFalse();
 	
@@ -65,8 +58,8 @@ void Player2D::move(KeyController &keyController,CollisionStack2D &map){
 	}
 	else move(1.0f);
 
-	if(velocity.x < 0.0f)direction = -1;
-	else if(velocity.x > 0.0f)direction = 1;
+	if(velocity.x < 0.0f)rotation.changeY(180.0f);
+	else if(velocity.x > 0.0f)rotation.changeY(0.0f);
 	
 	/*
 	if(playerWall.WALLBOTTOM){
@@ -82,12 +75,14 @@ void Player2D::move(KeyController &keyController,CollisionStack2D &map){
 	else if(player2D.midPosition.y * 100.0f + 85.0f < point-120) running = false;
 	*/
 
-	//playerSprite.nextFrame();
-	//playerSprite.generateMesh(setToMid(position));
+	playerSprite.nextFrame();
+	playerSprite.generateMesh(setToMid(position));
 
 }//it will work for multible players to
 void Player2D::move(float t){
 		float firstPosX,firstPosY;
+		Vector3 midPosition;
+		midPosition = getMidPoint(position);
 		
 		firstPosX = midPosition.x;
 		firstPosY = midPosition.y;

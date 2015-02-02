@@ -61,3 +61,9 @@ SHP2Rectangle setToMid(SHP2Rectangle &rec){
 	return tempRec;
 
 }
+Vector3 getMidPoint(SHP2Rectangle &rec){
+	Vector3 temp;
+	temp.x = (rec.vecMax.x + rec.vecMin.x)/2.0f;	
+	temp.y = (rec.vecMax.y + rec.vecMin.y)/2.0f;
+	return temp;
+}

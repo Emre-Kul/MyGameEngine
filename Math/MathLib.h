@@ -2,16 +2,12 @@
 #define MATHLIB_H
 
 #include <algorithm>
-#include <math.h>
-
 #include "Vectors.h"
 #include "Matrix.h"
 
 using std::swap; 
 using std::max;
 using std::min;
-
-const double MATH_PI = 3.14159265;
 
 bool clipLine(float rv1,float rv2,float boxmin,float boxmax,float &ft_min,float &ft_max);
 float DotProduct(Vector3 &vc1,Vector3 &vc2);

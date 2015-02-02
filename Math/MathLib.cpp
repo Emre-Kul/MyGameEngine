@@ -1,6 +1,4 @@
 #include "MathLib.h"
-
-
 bool clipLine(float rv1,float rv2,float boxmin,float boxmax,float &ft_min,float &ft_max){
 	float t_min,t_max,B;
 	B = rv2-rv1;
@@ -38,27 +36,28 @@ return newVec.length();
 }
 			/************ 2D ***************/
 float DotProduct(Vector2 &vc1,Vector2 &vc2){
-	return  (vc1.x*vc1.x + vc1.y*vc2.y);
+	return  (vc1.x*vc2.x + vc1.y*vc2.y);
 }
 float PointDistance(Vector2 &p1,Vector2 &p2){
 Vector2 newVec;
 newVec = p2-p1;
 return newVec.length();
 }
-
 Matrix4x4 MathLib::generateTransformMatrix(Vector3& translation,Vector3& rotation,Vector3& scale){// rotation missing
 	Matrix4x4 transformMat;//identity matrix
+
 	transformMat.translate(translation);
 	transformMat.scale(scale);
 	
 	transformMat.rotateX(rotation.x);
 	transformMat.rotateY(rotation.y);
 	transformMat.rotateZ(rotation.z);
+
 	return transformMat;
 }//done
 Matrix4x4 MathLib::generateProjectionMatrix(float ratio,float angle,float near,float far){
 	Matrix4x4 prm;	
-	float y_scale = (1.0f/tan((double)angle * MATH_PI/180.0))*ratio;
+	float y_scale = (1.0f/tan(angle * MATH_PI/180.0f))*ratio;
 	float x_scale = y_scale/ratio;
 	float length = far - near;
 	prm.getMatrix()[0] = x_scale;

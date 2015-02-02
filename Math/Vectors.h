@@ -4,7 +4,6 @@
 #include <cmath>
 
 class Vector2{
-
 	public: 
 		float x,y;
 		Vector2();
@@ -17,6 +16,7 @@ class Vector2{
 		void changeY(float a){y = a;}//inline
 	
 		void normalize(Vector2 &vec);
+		float lengthDotProduct(){return (x*x + y*y);}
 		float length(){return (float)sqrt( (x*x) + (y*y));}//inline
 
 		Vector2 operator+(const Vector2 vec);
@@ -31,23 +31,25 @@ class Vector2{
 
 };
 class Vector3{
-	     public:
+		public:
              float x,y,z;
             
              Vector3();
-	     Vector3(float a,float b);
+			 Vector3(float a,float b);
              Vector3(float a,float b,float c);
              Vector3(const Vector3 &vec2);
       
              void change(float a,float b,float c);
              void change (const Vector3 &vec2);
-	     void changeX(float a){x = a;}//inline
-	     void changeY(float a){y = a;}//inline
-	     void changeZ(float a){z = a;}//inline
+			 void changeX(float a){x = a;}//inline
+			 void changeY(float a){y = a;}//inline
+			 void changeZ(float a){z = a;}//inline
              
              void normalize(Vector3 &vec);
-	     float length(){return sqrt(x*x+y*y+z*z);}//inline
-             Vector3 normalize();
+			 float lengthDotProduct(){return (x*x + y*y + z*z);}
+			 float length(){return sqrt(x*x+y*y+z*z);}//inline
+             
+			 Vector3 normalize();
              
              Vector3 operator+(const Vector3 vec2);
              Vector3 operator-(const Vector3 vec2);

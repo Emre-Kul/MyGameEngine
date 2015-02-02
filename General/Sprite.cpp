@@ -22,32 +22,31 @@ void Sprite::draw(){
 	glBindTexture(GL_TEXTURE_2D,textureResource->textureid);
 	spritemesh.drawMesh();
 }
-void Sprite::generateMesh(SHP2Rectangle &position){
+void Sprite::generateMesh(SHP2Rectangle &position){	
 	SHP2Rectangle tempTex;
 	MeshStore temp;
-	float swap;
-	
+
 	int width = textureResource->width;
 	int height = textureResource->height;
-		
+	
 	tempTex.vecMin.x = 1.0f/(float)width * frames[frameIndex]->vecMin.x;
 	tempTex.vecMin.y = 1.0f/(float)height * frames[frameIndex]->vecMin.y;
 	tempTex.vecMax.x = 1.0f/(float)width * frames[frameIndex]->vecMax.x;
 	tempTex.vecMax.y = 1.0f/(float)height * frames[frameIndex]->vecMax.y;
-
+	
 	CreateMeshSHP2Rectangle(temp,position,textureResource->textureid,tempTex);
 	
 	if(!spritemesh.isThereMesh())spritemesh.createMesh(temp);
 	else spritemesh.refreshMesh(temp);
 }
 
-void Sprite::setFrame(SHP2Rectangle &frame){
+void Sprite::setFrame(SHP2Rectangle& frame){
 	frames.clear();
 	frames.push_back(new SHP2Rectangle(frame));
 }
 void Sprite::setFrames(vector <SHP2Rectangle*> &slides){
      frames.clear();
-     for(int i = 0;i < slides.size();i++) frames.push_back(slides[i]);
+     for(unsigned int i = 0;i < slides.size();i++) frames.push_back(slides[i]);
      }
 void Sprite::setFrameGroup(FrameGroup &fgroups){
 	frameGroup.clear();

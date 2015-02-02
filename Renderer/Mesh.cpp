@@ -8,8 +8,7 @@ VAO::VAO(){
 	VertexSize = 0;
 	}
 MeshStore::MeshStore(){
-    int textureId,drawType;
-	colorVBOindex = -1;
+   	colorVBOindex = -1;
 	vertexVBOindex = -1;
 	indexesVBOindex = -1;
 	normalVBOindex = -1;
@@ -63,7 +62,7 @@ void MeshStore::uniteMeshStore(MeshStore &ms){
 	colorCoord.insert(colorCoord.end(),ms.colorCoord.begin(),ms.colorCoord.end());
 	normalCoord.insert(normalCoord.end(),ms.normalCoord.begin(),ms.normalCoord.end());
 	textureCoord.insert(textureCoord.end(),ms.textureCoord.begin(),ms.textureCoord.end());
-	for(int i = 0;i < ms.getIndexes().size();i++)
+	for(unsigned int i = 0;i < ms.getIndexes().size();i++)
 		ms.getIndexes()[i] += indexPlus;
 	indexes.insert(indexes.end(),ms.getIndexes().begin(),ms.getIndexes().end());
 	//tamamen ayný koþullarda olmalarý gerekiyor yoksa bozulur

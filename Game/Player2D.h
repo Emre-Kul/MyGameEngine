@@ -8,12 +8,11 @@
 #include "../General/GeneralFunc.h"
 
 class Player2D{
-		Vector2 velocity,velocityGoal,look,acceleration;
-		Vector3 midPosition;
+		Vector2 velocity,velocityGoal,acceleration;
+		Vector3 rotation;
 		SHP2Rectangle position;
 		Sprite playerSprite;
 		CollisionWall playerWall;
-		int direction;
 		void move(float t);
 	public:
 		Player2D();
@@ -27,14 +26,12 @@ class Player2D{
 		void setVelocity(float x,float y){velocity.change(x,y);}
 		void setVelocityGoal(float x,float y){velocityGoal.change(x,y);}
 		void setAcceleration(float x,float y){acceleration.change(x,y);}
-		void setLook(float x,float y){look.change(x,y);}
 		void setSprite(Sprite &sprite){playerSprite = sprite;}
 		
-		Vector3& getMidPosition(){return midPosition;}
+		Vector3& getRotation(){return rotation;}
 		Vector2& getVelocity(){return velocity;}
 		Vector2& getVelocityGoal(){return velocityGoal;}
 		Vector2& getAcceleration(){return acceleration;}
-		Vector2& getLook(){return look;}
 		Sprite& getSprite(){return playerSprite;}
 		SHP2Rectangle& getPosition(){return position;}
 };

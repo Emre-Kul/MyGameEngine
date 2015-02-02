@@ -64,3 +64,17 @@ void DrawSHP2Ray(SHP2Ray &ray){
 	glVertex2f(ray.P1.x,ray.P1.y);
 	glEnd();
 }
+
+void DrawSHP2Circle(SHP2Circle &circ,int drawType){
+	float x,y;
+	glPointSize(2);
+    glBegin(GL_POINTS);
+    for(float i = 0;i < 360;i++){
+           x = cos(i);
+           y = sin(i);
+		   glVertex3f(x*circ.r + circ.center.x,y*circ.r + circ.center.y,0);
+       }
+	glEnd();
+	
+}
+

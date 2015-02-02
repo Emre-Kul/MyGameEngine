@@ -9,4 +9,8 @@ Screen::Screen(int witdh,int height){
 	SCR_WIDTH = witdh;
 	ratio = (float)SCR_HEIGHT/(float)SCR_WIDTH;
 }	
-	 
+void Screen::setScreen(int witdh,int height){
+	SCR_HEIGHT = height;
+	SCR_WIDTH = witdh;
+	ratio = (float)SCR_HEIGHT/(float)SCR_WIDTH;
+}

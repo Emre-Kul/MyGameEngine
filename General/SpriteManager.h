@@ -10,11 +10,16 @@ struct SpriteResource{
 };
 class SpriteManager{
 	std::vector <SpriteResource> spriteResource;
-
+	int activeSprite;
 public:
+	SpriteManager(){}
+
+	void createSprite(std::string name);
+	void bindSprite(std::string name);
+	void bindSprite(int i){activeSprite = i;}
 	
-	void addSprite(Sprite sprite,std::string name);
 	Sprite& getSprite(std::string name);
+	Sprite& getSprite(){return spriteResource[activeSprite].sprite;}
 	bool searchSprite(std::string name,Sprite &spr);
 
 };

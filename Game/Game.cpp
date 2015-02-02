@@ -1,17 +1,14 @@
 #include "Game.h"
-void Game::gameInit(){
-	srand((unsigned int)time(NULL));//for boost and floor generation
-	prepareShaders();
+void Game::initOpengl(){
+	glewExperimental = GL_TRUE; 
+	glewInit();
+    glEnable(GL_ALPHA_TEST);
+    glEnable(GL_TEXTURE_2D);
+	glEnable(GL_BLEND); 
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glClearColor(1.0f,1.0f,1.0f,1.0f);
 }
-void Game::refresh(){
 
-}
-void Game::render(){
-	
-}
-void Game::update(){
-	
-}	
 		//privates
 void Game::prepareShaders(){
 	textureShaderProgram.initShader("Data/Shaders/vertex.vs","Data/Shaders/fragment.fs");

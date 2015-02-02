@@ -97,7 +97,7 @@ float CollisionStack2D::sweptAABB(SHP2Rectangle &rec1,SHP2Rectangle &rec2,Collis
 	}
 	
 
-	t_near = max(xnear,ynear)-0.001;
+	t_near = max(xnear,ynear)-0.001f;
 	return t_near;
 }
 
@@ -105,7 +105,7 @@ bool CollisionStack2D::rectangleTrace(SHP2Rectangle &rec,CollisionWall &WALL,flo
 	bool hit = false;
 	float time_old = 1.0f;
 	SHP2Rectangle futureRec(rec.vecMin.x + velx,rec.vecMin.y + vely,rec.vecMax.x + velx,rec.vecMax.y + vely);
-	for(int i = 0;i < aabbs.size();i++){
+	for(unsigned int i = 0;i < aabbs.size();i++){
 		if(Collision2D::RecRecCol(futureRec,*aabbs[i])){
 		hit = true;
 		time = sweptAABB(rec,*aabbs[i],WALL,velx,vely);

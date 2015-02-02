@@ -47,7 +47,7 @@ glUniform1f(location,t);
 }
 void ShaderProgram::loadMatrix(int location,Matrix4x4 &mtr){
 	float *value = mtr.getMatrix();
-	glUniformMatrix4fv(location,1,false,value);
+	glUniformMatrix4fv(location,1,true,value);
 }
 void ShaderProgram::loadInt(int location,int i){
 	glUniform1i(location,i);
