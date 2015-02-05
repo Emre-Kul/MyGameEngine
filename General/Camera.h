@@ -3,26 +3,20 @@
 
 #include "../Math/Vectors.h"
 #include "../Math/Matrix.h"
+#include "../Math/Mathlib.h"
 
 class Camera{
-	Vector3 position,eye,up;
+	Vector3 position;
 	Matrix4x4 viewMatrix;	
-	float yaw,pitch,roll;
+	float cyaw,cpitch,croll;
 
 public:
-	
-	void setCamera(Vector3 &posV,Vector3 &eyeV,Vector3 &upV);
-	void generateViewMatrix();
-
+	void setCamera(Vector3 &pos,float yaw,float pitch,float roll);
 				//inlines
-	void setPosition(Vector3 &vec){position = vec;}
-	void setUp(Vector3 &vec){eye = vec;}
-	void setEye(Vector3 &vec){up = vec;}
-
-	Vector3& getPosition(){return position;}
-	Vector3& getEye(){return eye;}
-	Vector3& getUp(){return up;}
-	Matrix4x4& getViewMatrix(){return viewMatrix;}
+	inline void generateViewMatrix(){viewMatrix = MathLib::generateViewMatrix(position,cpitch,cyaw,croll);}
+	inline void setPosition(Vector3 &vec){position = vec;}
+	inline Vector3& getPosition(){return position;}	
+	inline Matrix4x4& getViewMatrix(){return viewMatrix;}
 
 };
 

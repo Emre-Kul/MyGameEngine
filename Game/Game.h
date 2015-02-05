@@ -18,8 +18,9 @@
 
 
 class Game{
-		bool running,paused;
+		
 	public:
+		bool running,paused;
 		Screen screen;
 		TextureManager textureManager;
 		SpriteManager spriteManager;

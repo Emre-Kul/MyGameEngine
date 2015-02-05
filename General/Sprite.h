@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include "../General/GeneralFunc.h"
 #include "../Renderer/MeshCreator.h"
 #include "../Physics/Shapes2D.h"
 #include "TextureManager.h"
@@ -19,6 +20,7 @@ public:
 	void next();
 	unsigned int getCurrentFrameIndex(){return frameOrder[currentFrameIndex];}
 };
+
 class Sprite{
 	unsigned int groupId,frameIndex;
 	vector <FrameGroup*> frameGroup;

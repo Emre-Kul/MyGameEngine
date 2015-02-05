@@ -1,13 +1,16 @@
 #include "TextManager.h"
-Font::Font(){}
+Font::Font(){
+	width = 0;
+	height = 0;
+	font_texture_id = 0;
+}
 Font::Font(int textureid,int wth,int hgh,vector <SHP2Rectangle*> &letter,vector <unsigned int> &letter_id){
 					  width = wth;
 					  height = hgh;
 					  font_texture_id = textureid;
                       letters = letter;
 					  letter_ids = letter_id;
-                      
-                      
+                    
            } 
 int Font::getLetterRectangle(int id){
 	unsigned int i = 0;
@@ -18,40 +21,56 @@ int Font::getLetterRectangle(int id){
 	return -1;
 	
 }
+void TextManager::addText(SHP2Rectangle &pos,string text){
+	positions.push_back(pos);
+	texts.push_back(text);
+}
+void TextManager::BindFont(Font &tmf,Vector2 &sz){
+	currentFont = tmf;
+	size = sz;
+}
+void TextManager::cleanTexts(){
+	positions.erase(positions.begin(),positions.end());
+	texts.erase(texts.begin(),texts.end());
+}
+void TextManager::generateMesh(){
+	MeshStore allDraw;
+    SHP2Rectangle texRec,posRec;
+	MeshStore tempMesh;
+	for(unsigned int i = 0;i < positions.size();i++){
+		posRec = positions[i];	
+		
+		posRec.vecMin.x += ( (posRec.vecMax.x - posRec.vecMin.x)-(size.x*strlen(texts[i].c_str())) )/2.0f;
+		posRec.vecMin.y += ( (posRec.vecMax.y - posRec.vecMin.y)-(size.y))/2.0f;
+		posRec.vecMax.y = posRec.vecMin.y + size.y;
 
-void TextManager::BindFont(Font tmf){currentFont = tmf;}
-void TextManager::setPosition(float minx,float miny,float maxx,float maxy){
-     text_position.vecMin.change(minx,miny);
-     text_position.vecMax.change(maxx,maxy);
-     }
-void TextManager::setPosition(SHP2Rectangle &pos){
-     text_position = pos;
-     }
-void TextManager::setText(string str){
-     text_string = str;
-     };
-void TextManager::drawText(){
-	    SHP2Rectangle texRec,posRec;
-		float hgh = text_position.vecMax.x - text_position.vecMin.x;
-		posRec = text_position;
-		int num ;
-		for(unsigned int i = 0;i < text_string.length();i++){
-		num = currentFont.getLetterRectangle((unsigned int)text_string[i]);
-		if(num >= 0){
-		texRec.vecMin.change(
-		 1.0f/(float)currentFont.width * currentFont.letters[num]->vecMin.x,
-		 1.0f/(float)currentFont.height * currentFont.letters[num]->vecMin.y);
-		texRec.vecMax.change(
-		 1.0f/(float)currentFont.width * currentFont.letters[num]->vecMax.x,
-		 1.0f/(float)currentFont.height * currentFont.letters[num]->vecMax.y
-		);
-		posRec.vecMax.changeX(text_position.vecMax.x + hgh*i);
-		posRec.vecMin.changeX(text_position.vecMin.x + hgh*i);
+		for(unsigned int j = 0;j < strlen(texts[i].c_str());j++){ 
+
+			int num = currentFont.getLetterRectangle((unsigned int)texts[i][j]);//id of letter rectangle
+			//num can be -1 this need if-else
+			texRec.vecMin.change(
+				1.0f/(float)currentFont.width * currentFont.letters[num]->vecMin.x,
+				1.0f/(float)currentFont.height * currentFont.letters[num]->vecMin.y);
+			texRec.vecMax.change(
+				1.0f/(float)currentFont.width * currentFont.letters[num]->vecMax.x,
+				1.0f/(float)currentFont.height * currentFont.letters[num]->vecMax.y
+			);
+			posRec.vecMax.changeX(posRec.vecMin.x + size.x);
+			CreateMeshSHP2Rectangle(tempMesh,posRec,currentFont.font_texture_id,texRec); 
+			allDraw.uniteMeshStore(tempMesh);	
+			posRec.vecMin.x += size.x;
+		
+		}
+	}
 	
-		}
-		
-		
-		}
-}     
+	if(text_mesh.isThereMesh())text_mesh.refreshMesh(allDraw);
+	else text_mesh.createMesh(allDraw);
+	
+}
+void TextManager::drawTexts(){
+	glBindTexture(GL_TEXTURE_2D,currentFont.font_texture_id);
+	text_mesh.drawMesh();
+}
+
 
 

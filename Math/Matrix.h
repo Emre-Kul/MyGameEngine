@@ -3,9 +3,8 @@
 
 #include "Vectors.h"
 #include <math.h>
+#include <algorithm>
 const float MATH_PI = 3.14159265f;
-#include <iostream>
-using namespace std;
 
 class Matrix4x4{
 	float m[16];

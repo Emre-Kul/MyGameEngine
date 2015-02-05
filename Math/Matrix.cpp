@@ -18,7 +18,7 @@ void Matrix4x4::setIdentity(){
      m[12] = 0; m[13] = 0; m[14] = 0; m[15] = 1;
 }
 void Matrix4x4::transpoze(){
-	for(int i = 0;i < 4;i++) for (int j = i*5;j < i+4;j++)swap(m[i],m[j]);
+	for(int i = 0;i < 4;i++) for (int j = i*5;j < i+4;j++)std::swap(m[i],m[j]);
 }
 void Matrix4x4::translate(Vector3 &vec){
 	m[0] += m[12]*vec.x;	

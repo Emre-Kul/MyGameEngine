@@ -26,6 +26,7 @@ void Sprite::generateMesh(SHP2Rectangle &position){
 	SHP2Rectangle tempTex;
 	MeshStore temp;
 
+
 	int width = textureResource->width;
 	int height = textureResource->height;
 	

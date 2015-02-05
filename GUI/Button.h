@@ -1,22 +1,30 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include "Sprite.h"
+#include "../General/Sprite.h"
+#include "../Renderer/Mesh.h"
 
 class Button{
-	//focusSprite,normalSprite ?
+	string text;
 	Sprite buttonSprite;//there can be more than 1 
-	bool GotFocus,PressButton;
+	SHP2Rectangle position;
+	bool gotFocus,buttonPressed;
+
 public:
 	Button();
-	void DrawButton();
-
-	//inline//
-	void setButtonSprite(Sprite &sprite){buttonSprite = sprite;}
-	void setFocus(bool focus){GotFocus = focus;}
-	void pressButton(){PressButton = true;}
-	bool isFocused(){return GotFocus;}
-	bool isPressed(){return PressButton;}
+	void setPosition(SHP2Rectangle &pos);
+	void setButton(Sprite &backgroundSprite,SHP2Rectangle &pos,string s_text);
+					//inline//
+	inline void setButtonSprite(Sprite &sprite){buttonSprite = sprite;}
+	inline void setFocus(bool focus){gotFocus = focus;}
+	inline void pressButton(){buttonPressed = true;}
+	inline void setText(string txt){text = txt;}
+	
+	inline void DrawButton(){buttonSprite.draw();}
+	inline string& getText(){return text;}
+	inline bool isFocused(){return gotFocus;}
+	inline bool isPressed(){return buttonPressed;}
+	inline SHP2Rectangle& getPosition(){return position;}
 
 };
 

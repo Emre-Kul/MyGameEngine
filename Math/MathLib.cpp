@@ -70,8 +70,11 @@ Matrix4x4 MathLib::generateProjectionMatrix(float ratio,float angle,float near,f
 }//done
 Matrix4x4 MathLib::generateViewMatrix(Vector3& position,float pitch,float yaw,float roll){
 	Matrix4x4 view;
-	view.rotate(pitch,Vector3(1,0,0));
-	view.rotate(yaw,Vector3(0,1,0));
+	
+	view.rotateX(pitch);
+	view.rotateY(yaw);
+	view.rotateZ(roll);
+
 	Vector3 negative;
 	negative -= position;
 	view.translate(negative);

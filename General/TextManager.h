@@ -5,7 +5,7 @@
 #include <string.h>
 #include <vector>
 #include "../Physics/Shapes2D.h"
-
+#include "../Renderer/MeshCreator.h"
 using std::vector;
 using std::string;
 
@@ -21,29 +21,22 @@ class Font{
        Font(int textureid,int wth,int hgh,vector <SHP2Rectangle*> &letter,vector <unsigned int> &letter_id);
 	   int getLetterRectangle(int id);	    
        };
-/*
-struct Text{
-string str;
-position
 
-};
-*/
 class TextManager{
-          
-          string text_string;
-          float *meshTEXT;
+		  vector <SHP2Rectangle> positions;
+		  vector <string> texts;
+		  
+		  Font currentFont;
+		  string text_string;
 
+		  Mesh text_mesh;
+          Vector2 size;
       public:
-		  SHP2Rectangle text_position;
-          Font currentFont;
-          void BindFont(Font tmf);
-          
-          void setPosition(float minx,float miny,float maxx,float maxy);
-          void setPosition(SHP2Rectangle &pos);
-          
-          void setText(string str);
-          //void drawText(Text &txt);     
-          void drawText();
-      
+		 
+		  void addText(SHP2Rectangle &pos,string text);
+          void BindFont(Font &tmf,Vector2 &sz);
+          void drawTexts();
+		  void cleanTexts();
+		  void generateMesh();	
       };
 #endif

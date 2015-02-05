@@ -57,13 +57,13 @@ public:
 	   int getTextureId(){return textureId;}//inline
 	   int setDrawType(){return drawType;}//inline
 		
-	   void uniteMeshStore(MeshStore &ms);
+	   void uniteMeshStore(MeshStore ms);
 
 };
 class Mesh{
 		VAO VAOID;
 	public:
-		void builMesh();
+		
 		void createMesh(MeshStore &ms);//it create multible vbo
 		void refreshMesh(MeshStore &ms);
 		void releaseMesh();

@@ -56,8 +56,9 @@ void MeshStore::setIndexes(unsigned int *vt,int size){
 		VBOindex ++;
 	}
 }
-void MeshStore::uniteMeshStore(MeshStore &ms){
+void MeshStore::uniteMeshStore(MeshStore ms){
 	int indexPlus = (vertexCoord.size() / 3);
+	if(indexPlus == 0)*this = ms;
 	vertexCoord.insert(vertexCoord.end(),ms.vertexCoord.begin(),ms.vertexCoord.end());
 	colorCoord.insert(colorCoord.end(),ms.colorCoord.begin(),ms.colorCoord.end());
 	normalCoord.insert(normalCoord.end(),ms.normalCoord.begin(),ms.normalCoord.end());
@@ -65,6 +66,7 @@ void MeshStore::uniteMeshStore(MeshStore &ms){
 	for(unsigned int i = 0;i < ms.getIndexes().size();i++)
 		ms.getIndexes()[i] += indexPlus;
 	indexes.insert(indexes.end(),ms.getIndexes().begin(),ms.getIndexes().end());
+
 	//tamamen ayný koþullarda olmalarý gerekiyor yoksa bozulur
 }
 	   /********MESH********/
