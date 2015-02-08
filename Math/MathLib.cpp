@@ -43,10 +43,10 @@ Vector2 newVec;
 newVec = p2-p1;
 return newVec.length();
 }
-Matrix4x4 MathLib::generateTransformMatrix(Vector3& translation,Vector3& rotation,Vector3& scale){// rotation missing
+Matrix4x4 MathLib::generateTransformMatrix(Vector3& position,Vector3& rotation,Vector3& scale){// rotation missing
 	Matrix4x4 transformMat;//identity matrix
 
-	transformMat.translate(translation);
+	transformMat.translate(position);
 	transformMat.scale(scale);
 	
 	transformMat.rotateX(rotation.x);

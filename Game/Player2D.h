@@ -10,8 +10,10 @@
 class Player2D{
 
 		Vector2 velocity,velocityGoal,acceleration,collNormal;
+		
 		Vector3 rotation;
 		SHP2Rectangle position;
+
 		Sprite playerSprite;
 		
 		void move(float t);

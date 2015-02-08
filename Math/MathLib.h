@@ -18,7 +18,7 @@ float PointDistance(Vector2 &p1,Vector2 &p2);
 
 class MathLib{
 public:
-	static Matrix4x4 generateTransformMatrix(Vector3& translation,Vector3& rotation,Vector3& scale);
+	static Matrix4x4 generateTransformMatrix(Vector3& position,Vector3& rotation,Vector3& scale);
 	static Matrix4x4 generateViewMatrix(Vector3& position,float pitch,float yaw,float roll);
 	static Matrix4x4 generateProjectionMatrix(float ratio,float angle,float near,float far);
 };

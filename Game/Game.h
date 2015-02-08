@@ -34,17 +34,17 @@ class Game{
 
 		Game(){}
 		
-			//virtuals
+					//virtuals
 		virtual void initOpengl();
 		virtual void render(){}
 		virtual void update(){}
-			//inlines
-		void setScreen(Screen &scr){screen = scr;}
-		void setCamera(Camera &cmr){camera = cmr;}
-		void run(){running = true;}
-		void stop(){running = false;}
-		void pause(){paused = true;}
-		void repause(){paused = false;}
+					 //inlines
+		inline void setScreen(Screen &scr){screen = scr;}
+		inline void setCamera(Camera &cmr){camera = cmr;}
+		inline void run(){running = true;}
+		inline void stop(){running = false;}
+		inline void pause(){paused = true;}
+		inline void repause(){paused = false;}
 
 };
 

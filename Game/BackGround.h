@@ -7,17 +7,16 @@ class BackGround
 {
 	Sprite *bgSprite;
 	SHP2Rectangle position;
-	Vector3 midPosition;
+
 public:
 	
 	void setPosition(float minx,float miny,float maxx,float maxy);
-	void draw(){bgSprite->draw();}
-
-	Vector3& getMidPosition(){return midPosition;}
-	void setSprite(Sprite &spr){bgSprite = &spr;}
-	void setPosition(SHP2Rectangle &pos){setPosition(pos.vecMin.x,pos.vecMin.y,pos.vecMax.x,pos.vecMax.y);}
-	Sprite& getSprite(){return *bgSprite;}
-	SHP2Rectangle& getPosition(){return position;}
+				//inlines
+	inline void draw(){bgSprite->draw();}
+	inline void setSprite(Sprite &spr){bgSprite = &spr;}
+	inline void setPosition(SHP2Rectangle &pos){setPosition(pos.vecMin.x,pos.vecMin.y,pos.vecMax.x,pos.vecMax.y);}
+	inline Sprite& getSprite(){return *bgSprite;}
+	inline SHP2Rectangle& getPosition(){return position;}
 };
 
 

@@ -10,14 +10,13 @@ class Vector2{
 		Vector2(float a,float b);
 		Vector2(const Vector2 &vec);
 
-		
 		void change(float a,float b);
-		void changeX(float a){x = a;}//inline
-		void changeY(float a){y = a;}//inline
-	
-		void normalize(Vector2 &vec);
-		float lengthDotProduct(){return (x*x + y*y);}
-		float length(){return (float)sqrt( (x*x) + (y*y));}//inline
+		Vector2 normalize();
+					//inlines
+		inline void changeX(float a){x = a;}
+		inline void changeY(float a){y = a;}
+		inline float sqrMaq(){return (x*x + y*y);}
+		inline float length(){return (float)sqrt( (x*x) + (y*y));}
 
 		Vector2 operator+(const Vector2 vec);
 		Vector2 operator-(const Vector2 vec);
@@ -28,7 +27,11 @@ class Vector2{
 		Vector2 operator-=(const Vector2 vec);
 		Vector2 operator*=(float num);
 		Vector2 operator/=(float num);
-
+					//Static func like Vector3
+		static void normalize(Vector2 &vec);
+        static void MoveDirect(Vector2 &current,Vector2 &target,float t);
+        static void MoveLerp(Vector2 &current,Vector2 &target,float t);
+		static void DotProduct(Vector2 &vec1,Vector2 &vec2);
 };
 class Vector3{
 		public:
@@ -41,16 +44,14 @@ class Vector3{
       
              void change(float a,float b,float c);
              void change (const Vector3 &vec2);
-			 void changeX(float a){x = a;}//inline
-			 void changeY(float a){y = a;}//inline
-			 void changeZ(float a){z = a;}//inline
-             
-             void normalize(Vector3 &vec);
-			 float lengthDotProduct(){return (x*x + y*y + z*z);}
-			 float length(){return sqrt(x*x+y*y+z*z);}//inline
-             
 			 Vector3 normalize();
-             
+						//inlines
+			 inline void changeX(float a){x = a;}
+			 inline void changeY(float a){y = a;}
+			 inline void changeZ(float a){z = a;}
+			 inline float SqrMag(){return (x*x + y*y + z*z);}
+			 inline float length(){return sqrt(x*x+y*y+z*z);}
+            
              Vector3 operator+(const Vector3 vec2);
              Vector3 operator-(const Vector3 vec2);
              Vector3 operator*(float num);
@@ -61,22 +62,12 @@ class Vector3{
              Vector3 operator*=(float num);
              Vector3 operator/=(float num);
              
-             
+					//Static Functions Not Ready
+			 static void normalize(Vector3 &vec);
+			 static void MoveDirect(Vector3 &current,Vector3 &target,float t);
+			 static void MoveLerp(Vector3 &current,Vector3 &target,float t);
+			 static void DotProduct(Vector3 &vec1,Vector3 &vec2);
+
       };
-class Vector4{
-	public:
-		float x,y,z,w;
-		Vector4();
-		Vector4(float a,float b,float c,float d);
-		void change(float a,float b,float c,float d);
-		
-		void changeX(float a);
-		void changeY(float a);
-		void changeZ(float a);
-		void changeW(float a);
-		
-	};
-
-
-
+	//we can create Vector4 if nessecery
 #endif
